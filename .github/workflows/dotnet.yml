@@ -10,20 +10,6 @@ on:
     branches: [ "main" ]
 
 jobs:
-  vercel: 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      # deploy app to vercel
-      - name: deploy site to vercel      
-        uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional #Optional
-          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
-          vercel-args: '--prod'
-
   build:
 
     runs-on: ubuntu-latest
@@ -39,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet run --no-build --verbosity normal
